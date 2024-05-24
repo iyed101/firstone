@@ -24,7 +24,7 @@ import com.animeproj.firstone.models.Role;
 
 @Service
 public class UserService implements UserDetailsService {
-     @Autowired
+    @Autowired
     private final UserRepo userRepo;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
@@ -88,4 +88,5 @@ public class UserService implements UserDetailsService {
     public void deleteRecruiter(Integer id) {
         userRepo.deleteById(id);
     }
+    
 }

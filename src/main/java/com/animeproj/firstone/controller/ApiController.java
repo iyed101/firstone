@@ -33,6 +33,7 @@ public class ApiController {
     }
 
     @GetMapping(path = "/getall", produces = MediaType.APPLICATION_JSON_VALUE)
+    @CrossOrigin
     public List<Anime> getAnime(){
         List<Anime> animes= animeRepo.findAll();        
         return animes;
@@ -82,5 +83,33 @@ public class ApiController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
+    @SuppressWarnings("null")
+    @GetMapping(value = "/anime/type/{type}", produces = MediaType.APPLICATION_JSON_VALUE)
+@CrossOrigin
+public ResponseEntity<List<Anime>> getAnimeByType(@PathVariable String type) {
+    try {
+        List<Anime> animeByType = animeRepo.findByType(type);
+        if (animeByType.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(animeByType, HttpStatus.OK);
+    } catch (Exception e) {
+        return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+}
+@SuppressWarnings("null")
+@GetMapping(value = "/anime/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+@CrossOrigin
+public ResponseEntity<Anime> getAnimeById(@PathVariable int id) {
+    try {
+        Optional<Anime> animeData = animeRepo.findById(id);
+        if (animeData.isPresent()) {
+            return new ResponseEntity<>(animeData.get(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    } catch (Exception e) {
+        return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+}
 }

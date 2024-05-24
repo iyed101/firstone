@@ -15,6 +15,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/episode")
+@CrossOrigin(origins = "http://localhost:3000")
 public class EpisodeController {
 
     @Autowired

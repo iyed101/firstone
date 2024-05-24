@@ -1,15 +1,20 @@
 package com.animeproj.firstone.controller;
 
+
 import org.springframework.http.ResponseEntity;
+
 import org.springframework.web.bind.annotation.CrossOrigin;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.animeproj.firstone.auth.AuthenticationResponse;
 import com.animeproj.firstone.dto.loginDto;
 import com.animeproj.firstone.dto.registreDto;
+
 import com.animeproj.firstone.services.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -38,4 +43,6 @@ public class AuthenticationController {
 
         return ResponseEntity.ok(response);
     }
+    
+
 }

@@ -1,15 +1,19 @@
 package com.animeproj.firstone.controller;
 
+import com.animeproj.firstone.auth.AuthenticationResponse;
+import com.animeproj.firstone.config.jwt.JwtService;
 import com.animeproj.firstone.models.User;
 import com.animeproj.firstone.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+
 
 
 
@@ -20,6 +24,7 @@ import java.util.Optional;
 public class UserController {
     @Autowired
     private UserRepo userRepo;
+
     @GetMapping(value = "/all", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<User> getAllUsers() {
         return userRepo.findAll();
@@ -66,4 +71,6 @@ public class UserController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    
+    
 }
